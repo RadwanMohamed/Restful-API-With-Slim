@@ -11,4 +11,12 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 
     return $response;
 });
+
+$app->post('/API/first',function (Request $request,Response $response){
+   $data = $request->getParsedBody();
+   $var=[];
+   $var['name'] = filter_var($data['name'],FILTER_SANITIZE_STRING);
+   $var['phone'] = filter_var($data['phone'],FILTER_SANITIZE_STRING);
+   $response->getBody()->write("welcome ".$var['name']."\n"."your phone ".$var['phone']);
+});
 $app->run();
