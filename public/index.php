@@ -31,4 +31,20 @@ $app->get("/API/sendsimplejson/{firstname}/{lastname}",function(Request $Request
     $SendData['data']['lastname'] =$lastname;
     $Response->getBody()->write(json_encode($SendData));
 });
+
+// use put
+$app->put("/API/put",function (Request $request,Response $response){
+   $data = $request->getParsedBody();
+   $username = $data['username'];
+   $email    = $data['email'];
+   $response->getBody()->write("Hello MR ".$username."\n"."your Email : ".$email);
+});
+// use delete
+$app->delete("/API/delete",function(Request $request,Response $response){
+   $data = $request->getParsedBody();
+   $username=$data["username"];
+   $email=$data["email"];
+   $response->getBody()->write("Hello MR ".$username."\n"."your Email : ".$email." will be deleted");
+
+});
 $app->run();
